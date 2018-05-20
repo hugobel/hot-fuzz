@@ -2,4 +2,31 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background: #EEF2F3;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app {
+  width: 80%;
+  max-width: 900px;
+  min-width: 360px;
+  margin: 90px auto 30px;
+  text-align: center;
+}
+
+.search-box {
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid #A1AFB9;
+  font: 24px/36px sans-serif;
+  padding: 12px 30px;
+  background: transparent;
+  color: #4c5a66;
+  outline: none;
+  margin-bottom: 30px;
 }

@@ -1,17 +1,26 @@
 import React from 'react';
-import logo from '../logo.svg';
-import './App.css';
+import SearchBox from '../components/SearchBox';
 
-const App = () => (
-  <div className="App">
-    <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <h1 className="App-title">Welcome to React</h1>
-    </header>
-    <p className="App-intro">
-      To get started, edit <code>src/App.js</code> and save to reload.
-    </p>
-  </div>
-);
+class App extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {};
+    this.handleQuery = this.handleQuery.bind(this);
+  }
+
+  handleQuery(query) {
+    this.setState({ query });
+  }
+
+  render() {
+    return (
+      <div className="app">
+        <SearchBox onChange={this.handleQuery} />
+        <p>Showing results for: {this.state.query}</p>
+      </div>
+    );
+  }
+}
 
 export default App;
