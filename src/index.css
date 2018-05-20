@@ -30,3 +30,37 @@ body {
   outline: none;
   margin-bottom: 30px;
 }
+
+.table-details {
+  text-align: right;
+  margin-bottom: 5px;
+}
+
+.transactions {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.transactions thead {
+  font-size: 21px;
+  background: #BEC8CF;
+}
+
+.transactions tr {
+  border-bottom: 1px solid gray;
+}
+
+.transactions td,
+.transactions th {
+  padding: 9px;
+  text-align: left;
+}
+
+.transactions .date {
+  width: 50%;
+}
+
+.transactions .money {
+  text-align: right;
+}
