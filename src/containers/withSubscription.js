@@ -1,6 +1,6 @@
 import React from 'react';
 import data from '../services/fetch';
-import { mapTransactions } from '../utils/collection';
+import mapTransactions from '../utils/collection';
 
 const withSubscription = Component => (
   class extends React.Component {

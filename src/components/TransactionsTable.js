@@ -1,48 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { isoToHR } from '../utils/format';
+import { Details, Header, Row } from './table';
 
-const Row = ({
-  card,
-  date,
-  time,
-  amount,
-}) => (
-  <tr key={`${date}${card}`}>
-    <td className="date">{isoToHR(date)} @{time}</td>
-    <td>{card}</td>
-    <td className="money">{amount}</td>
+const NonIdealState = () => (
+  <tr className="non-ideal-results">
+    <td colSpan="3">
+      No transactions to show.
+    </td>
   </tr>
 );
 
-Row.propTypes = {
-  card: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
-  time: PropTypes.string.isRequired,
-  amount: PropTypes.number.isRequired,
-};
-
-const Header = () => (
-  <tr>
-    <th className="date">Date</th>
-    <th>Card</th>
-    <th className="money">Amount</th>
-  </tr>
-);
-
-const TransactionsTable = ({ entries }) => (
-  <table className="transactions">
-    <thead>
-      <Header />
-    </thead>
-    <tbody>
-      {entries.map(Row)}
-    </tbody>
-  </table>
+const TransactionsTable = ({ entries, query }) => (
+  <React.Fragment>
+    <Details query={query} />
+    <table className="transactions">
+      <thead>
+        <Header />
+      </thead>
+      <tbody>
+        {entries.length > 0 ? entries.map(Row) : <NonIdealState />}
+      </tbody>
+    </table>
+  </React.Fragment>
 );
 
 TransactionsTable.propTypes = {
+  query: PropTypes.string,
   entries: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
+
+TransactionsTable.defaultProps = {
+  query: '',
 };
 
 export default TransactionsTable;

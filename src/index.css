@@ -3,6 +3,7 @@ body {
   padding: 0;
   font-family: sans-serif;
   background: #EEF2F3;
+  color: #4c5a66;
 }
 
 * {
@@ -13,8 +14,8 @@ body {
 
 .app {
   width: 80%;
-  max-width: 900px;
-  min-width: 360px;
+  max-width: 600px;
+  min-width: 390px;
   margin: 90px auto 30px;
   text-align: center;
 }
@@ -26,34 +27,38 @@ body {
   font: 24px/36px sans-serif;
   padding: 12px 30px;
   background: transparent;
-  color: #4c5a66;
   outline: none;
   margin-bottom: 30px;
 }
 
-.table-details {
+.transactions-details {
   text-align: right;
   margin-bottom: 5px;
 }
 
 .transactions {
   width: 100%;
+  font-size: 16px;
   table-layout: fixed;
   border-collapse: collapse;
 }
 
 .transactions thead {
-  font-size: 21px;
+  font-size: 20px;
   background: #BEC8CF;
 }
 
 .transactions tr {
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid #BEC8CF;
+}
+
+.transactions tr:nth-child(even) {
+  background: #E5E9EC;
 }
 
 .transactions td,
 .transactions th {
-  padding: 9px;
+  padding: 9px 18px;
   text-align: left;
 }
 
@@ -63,4 +68,11 @@ body {
 
 .transactions .money {
   text-align: right;
+}
+
+.transactions .non-ideal-results td {
+  font-size: 24px;
+  text-align: center;
+  padding: 30px 18px;
+  color: #A1AFB9;
 }

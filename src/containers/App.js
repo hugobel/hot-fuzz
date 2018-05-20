@@ -20,8 +20,10 @@ class App extends React.Component {
     return (
       <div className="app">
         <SearchBox onChange={this.handleQuery} />
-        <p className="table-details">Showing results for: {this.state.query}</p>
-        <TransactionsTable entries={this.props.data} />
+        <TransactionsTable
+          entries={this.props.data}
+          query={this.state.query}
+        />
       </div>
     );
   }

@@ -9,19 +9,37 @@ const usCurrency = new Intl.NumberFormat('en-US', {
 });
 
 /*
+** Transforms the input removing characters that are NaN
+** input: $b289.906
+** output: 289.91
+*/
+const numericValue = (input) => {
+  const NaNPattern = /[^0-9.-]+/g;
+  const strAmount = input.toString();
+  return parseFloat(strAmount.replace(NaNPattern, ''));
+};
+
+/*
 ** Converts a Human-Readable date string [dd-mm-yyyy]
 ** into a valid ISO date [yyyy-mm-dd]
 ** Input: 23-05-2018
 ** Output: 2018-05-23
 */
-const hrToISO = hrDate => `${hrDate.slice(6)}-${hrDate.slice(3, 5)}-${hrDate.slice(0, 2)}`;
+export const hrToISO = (hrDate) => {
+  const [day, month, year] = hrDate.split(/[/|-]/);
+  if (year.length !== 4) throw new Error('Invalid date format. Use full year for dates.');
+  return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+};
 
 /*
 ** Converts an ISO date to be displayed on the transactions table.
 ** Input: 2018-06-15
 ** Output: 15/06/2018
 */
-export const isoToHR = isoDate => `${isoDate.slice(8)}/${isoDate.slice(5, 7)}/${isoDate.slice(0, 4)}`;
+export const isoToHR = (isoDate) => {
+  const [year, month, day] = isoDate.split('-');
+  return `${day}/${month}/${year}`;
+};
 
 /*
 ** Takes a datetime string and splits it into an object
@@ -39,5 +57,8 @@ export const splitDatetime = (datetime) => {
   };
 };
 
-export const currency = amount => usCurrency.format(amount);
-// TODO: Add test cases for util functions
+/*
+** Calls for a numeric value of the input
+** and creates an formatted instance of the amount
+*/
+export const currency = amount => usCurrency.format(numericValue(amount));
