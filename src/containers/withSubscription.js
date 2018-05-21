@@ -21,8 +21,12 @@ const withSubscription = Component => (
       fetch()
         .then(mapTransactions)
         .then((entries) => {
-          this.setState({ entries });
+          if (!this.isCancelled) this.setState({ entries });
         });
+    }
+
+    componentWillUnmount() {
+      this.isCancelled = true;
     }
 
     handleQuery(query) {
