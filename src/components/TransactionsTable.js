@@ -25,12 +25,8 @@ const TransactionsTable = ({ entries, query }) => (
 );
 
 TransactionsTable.propTypes = {
-  query: PropTypes.string,
+  query: PropTypes.string.isRequired,
   entries: PropTypes.arrayOf(PropTypes.object).isRequired,
-};
-
-TransactionsTable.defaultProps = {
-  query: '',
 };
 
 export default TransactionsTable;

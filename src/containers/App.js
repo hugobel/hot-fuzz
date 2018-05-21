@@ -5,32 +5,17 @@ import SearchBox from '../components/SearchBox';
 import TransactionsTable from '../components/TransactionsTable';
 import withSubscription from './withSubscription';
 
-class App extends React.Component {
-  constructor() {
-    super();
-    this.state = { query: '' };
-    this.handleQuery = this.handleQuery.bind(this);
-  }
-
-  handleQuery(query) {
-    this.setState({ query });
-  }
-
-  render() {
-    return (
-      <div className="app">
-        <SearchBox onChange={this.handleQuery} />
-        <TransactionsTable
-          entries={this.props.data}
-          query={this.state.query}
-        />
-      </div>
-    );
-  }
-}
+const App = ({ handleQuery, ...props }) => (
+  <div className="app">
+    <SearchBox onChange={handleQuery} />
+    <TransactionsTable {...props} />
+  </div>
+);
 
 App.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  query: PropTypes.string.isRequired,
+  entries: PropTypes.arrayOf(PropTypes.object).isRequired,
+  handleQuery: PropTypes.func.isRequired,
 };
 
 export default withSubscription(App);

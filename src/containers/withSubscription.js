@@ -1,21 +1,41 @@
 import React from 'react';
+import flow from 'lodash/flow';
 import data from '../services/fetch';
-import mapTransactions from '../utils/collection';
+import { mapProperties, sortByDate } from '../utils/collection';
+
+const mapTransactions = flow([
+  mapProperties,
+  sortByDate,
+]);
 
 const withSubscription = Component => (
   class extends React.Component {
     constructor() {
       super();
-      this.state = { data: [] };
+      this.state = { query: '', entries: [] };
+      this.handleQuery = this.handleQuery.bind(this);
     }
 
     componentDidMount() {
       const transactions = mapTransactions(data);
-      setTimeout(() => { this.setState({ data: transactions }); });
+      setTimeout(() => {
+        this.setState({ entries: transactions });
+      });
+    }
+
+    handleQuery(query) {
+      this.setState({ query });
     }
 
     render() {
-      return <Component data={this.state.data} {...this.props} />;
+      return (
+        <Component
+          query={this.state.query}
+          entries={this.state.entries}
+          handleQuery={this.handleQuery}
+          {...this.props}
+        />
+      );
     }
   }
 );
