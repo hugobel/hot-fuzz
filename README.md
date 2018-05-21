@@ -25,6 +25,14 @@ Some utilities were included in order to transform the incoming data, such as:
 
 + Splitting datetime into date and time.
 + Ensuring that time is a 5 characters string, for example `9:40` should be `09:40`.
-+ JavaScript native currency treatment for the amounts data. 
++ JavaScript native currency treatment for the amounts data.
+
+---
+
+### Ordering the transactions
+
+The transaction results will always be ordered by date (other Fuzzy Matching implementations might order by relevance), following this principle the entries are sorted as soon as they are loaded, after that every filter should display the ordered elements, it is a set and forget sort.
+
+Additionally the transactions are remapped and a searchable string property is appended to them, this is in order to set up the data once and query an optimized string multiple times.
 
 [debouncedsearchboxgif]: https://s3.amazonaws.com/hugobeldemos/searchbox.gif "Debounced SearchBox"

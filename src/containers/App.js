@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import SearchBox from '../components/SearchBox';
@@ -6,10 +6,10 @@ import TransactionsTable from '../components/TransactionsTable';
 import withSubscription from './withSubscription';
 
 const App = ({ handleQuery, ...props }) => (
-  <div className="app">
+  <Fragment>
     <SearchBox onChange={handleQuery} />
     <TransactionsTable {...props} />
-  </div>
+  </Fragment>
 );
 
 App.propTypes = {
