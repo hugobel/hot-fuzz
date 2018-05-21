@@ -9,7 +9,10 @@ export const createSearchRef = ({
   time,
   date,
   amount,
-}) => `${card}|${time}|${date}|${amount}`.replace(/[^\d|]/g, '');
+}) => {
+  const [year, month, day] = date.split('-');
+  return `${card}|${time}|${date}|${day + month + year}|${amount}`.replace(/[^\d|]/g, '');
+};
 
 /*
 ** Shapes the incoming transactions data to be displayed on the table

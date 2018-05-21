@@ -3,7 +3,7 @@
 ** Instead of transforming the data in this same file
 ** will return it as-is, recreating a response.
 */
-export default [
+const fetch = async () => ([
   { amount: 112.98, date: '27-01-2018T12:34', card_last_four: '2544' },
   { amount: 0.45, date: '01-12-2017T9:36', card_last_four: '4434' },
   { amount: 95.99, date: '23-11-2017T14:34', card_last_four: '3011' },
@@ -14,4 +14,6 @@ export default [
   { amount: 1.00, date: '17-02-2018T18:34', card_last_four: '1669' },
   { amount: 4.69, date: '01-02-2018T02:34', card_last_four: '8488' },
   { amount: 1111.11, date: '15-01-2018T21:34', card_last_four: '9912' },
-];
+]);
+
+export default fetch;
