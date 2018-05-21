@@ -11,7 +11,7 @@ export const createSearchRef = ({
   amount,
 }) => {
   const [year, month, day] = date.split('-');
-  return `${card}|${time}|${date}|${day + month + year}|${amount}`.replace(/[^\d|]/g, '');
+  return `${card}|${time}|${month + day + year}|${day + month + year}|${amount}`.replace(/[^\d|]/g, '');
 };
 
 /*
