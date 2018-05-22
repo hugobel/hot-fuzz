@@ -1,7 +1,7 @@
 import React from 'react';
 import flow from 'lodash/flow';
 import fetch from '../services/fetch';
-import { processQuery } from '../services/fuzzySearch';
+import fuzzySearch from '../services/fuzzySearch';
 import { mapProperties, sortByDate } from '../utils/collection';
 
 const mapTransactions = flow([
@@ -33,7 +33,7 @@ const withSubscription = Component => (
       this.setState({ query, filteredEntries: null });
 
       if (query.length > 0) {
-        processQuery(query)(this.state.entries)
+        fuzzySearch(query)(this.state.entries)
           .then((entries) => {
             this.setState({ filteredEntries: entries });
           });

@@ -7,19 +7,37 @@ const Row = ({
   date,
   time,
   amount,
-}) => (
-  <tr key={`${date}${card}`} className="transaction-row">
-    <td>{card}</td>
-    <td className="date">{isoToHR(date)} {time}</td>
-    <td className="money"><b>{amount}</b></td>
-  </tr>
-);
+  matchType,
+}) => {
+  const wrapped = elType => el => (matchType === elType ? <b>{el}</b> : el);
+
+  return (
+    <tr key={`${date}${card}`} className="transaction-row">
+      <td>
+        {wrapped('card')(card)}
+      </td>
+      <td className="date">
+        {wrapped('date')(isoToHR(date))}
+        &nbsp;
+        {wrapped('time')(time)}
+      </td>
+      <td className="money">
+        {wrapped('amount')(amount)}
+      </td>
+    </tr>
+  );
+};
 
 Row.propTypes = {
   card: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
   time: PropTypes.string.isRequired,
   amount: PropTypes.string.isRequired,
+  matchType: PropTypes.string,
+};
+
+Row.defaultProps = {
+  matchType: '',
 };
 
 export default Row;
