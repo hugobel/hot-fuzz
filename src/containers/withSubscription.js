@@ -30,15 +30,15 @@ const withSubscription = Component => (
 
     getEntries = () => (
       this.state.filteredEntries
-        ? this.state.filteredEntries.map(({ index, matchType }) =>
-          ({ ...this.state.entries[index], matchType }))
+        ? this.state.filteredEntries.map(({ index, type }) =>
+          ({ ...this.state.entries[index], type }))
         : this.state.entries
     );
 
     handleQuery = (query) => {
-      if (query.length < 1) {
-        this.setState({ query, filteredEntries: null });
-      } else {
+      this.setState({ query, filteredEntries: null });
+
+      if (query.length > 0) {
         fuzzySearch(query)(this.state.entries)
           .then((entries) => {
             this.setState({ filteredEntries: entries });
@@ -47,13 +47,11 @@ const withSubscription = Component => (
     }
 
     render() {
-      const entries = this.getEntries();
-
       return (
         <Component
-          entries={entries}
           query={this.state.query}
-          handleQuery={this.handleQuery}
+          entries={this.getEntries()}
+          onQuery={this.handleQuery}
           {...this.props}
         />
       );

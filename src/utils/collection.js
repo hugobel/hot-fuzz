@@ -1,5 +1,5 @@
 import sortBy from 'lodash/sortBy';
-import { currency, splitDatetime } from './format';
+import { currency, isoToHR, splitDatetime } from './format';
 
 /*
 ** Returns a properties pipe separated string for a search functionality
@@ -9,10 +9,9 @@ export const createSearchRef = ({
   time,
   date,
   amount,
-}) => {
-  const [year, month, day] = date.split('-');
-  return `${card}|${time}|${month + day + year}|${day + month + year}|${amount}`.replace(/[^\d|]/g, '');
-};
+}) => (
+  `${card}|${time}|${isoToHR(date)}|${amount}`.replace(/[^\d|]/g, '')
+);
 
 /*
 ** Shapes the incoming transactions data to be displayed on the table

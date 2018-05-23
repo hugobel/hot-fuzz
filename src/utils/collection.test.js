@@ -12,7 +12,7 @@ const formattedEntries = [
 
 it('returns a string of searchable entities for a given transaction', () => {
   const result = createSearchRef(formattedEntries[2]);
-  const searchableStr = '8999|0926|11022017|02112017|111';
+  const searchableStr = '8999|0926|02112017|111';
 
   expect(result).toEqual(searchableStr);
 });
@@ -25,7 +25,7 @@ it('formats the incoming data entries, appending required properties', () => {
     time: '05:34',
     card: '2544',
     amount: '$112.98',
-    searchable: '2544|0534|01272018|27012018|11298',
+    searchable: '2544|0534|27012018|11298',
   }]);
 });
 
@@ -40,4 +40,3 @@ it('sorts the transactions by date and returns the ordered array', () => {
     '2018-04-24',
   ]);
 });
-

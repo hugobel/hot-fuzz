@@ -1,5 +1,5 @@
-import Details from './Details';
 import Header from './Header';
+import Hint from './Hint';
 import Row from './Row';
 
-export { Details, Header, Row };
+export { Header, Hint, Row };

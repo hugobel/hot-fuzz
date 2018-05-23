@@ -7,9 +7,9 @@ const Row = ({
   date,
   time,
   amount,
-  matchType,
+  type,
 }) => {
-  const wrapped = elType => el => (matchType === elType ? <b>{el}</b> : el);
+  const wrapped = elType => el => (type === elType ? <b>{el}</b> : el);
 
   return (
     <tr key={`${date}${card}`} className="transaction-row">
@@ -33,11 +33,11 @@ Row.propTypes = {
   date: PropTypes.string.isRequired,
   time: PropTypes.string.isRequired,
   amount: PropTypes.string.isRequired,
-  matchType: PropTypes.string,
+  type: PropTypes.string,
 };
 
 Row.defaultProps = {
-  matchType: '',
+  type: '',
 };
 
 export default Row;

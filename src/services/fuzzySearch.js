@@ -1,8 +1,12 @@
 /*
+** Does not match if anything but a number is passed
+*/
+const hasInvalidChars = query => query.match(/\D/);
+
+/*
 ** Creates a RegEx pattern for testing a string
 */
 const fuzzyPattern = str => str
-  .replace(/\D/g, '')
   .split('')
   .reduce((pattern, letter, i) => (
     i === 0
@@ -15,7 +19,7 @@ const fuzzyPattern = str => str
 ** based on its index position
 */
 const matchType = (i) => {
-  if (i > 27) return 'amount';
+  if (i > 18) return 'amount';
   if (i > 9) return 'date';
   if (i > 4) return 'time';
   return 'card';
@@ -25,15 +29,17 @@ const matchType = (i) => {
 ** Takes a query string and performs a match on the searchable property of the transactions
 */
 export default query => async (entries) => {
-  const pattern = new RegExp(fuzzyPattern(query));
+  if (hasInvalidChars(query)) return [];
+
   const results = [];
+  const pattern = new RegExp(fuzzyPattern(query));
 
   entries.forEach((entry, index) => {
     const match = entry.searchable.match(pattern);
     if (match) {
       results.push({
         index,
-        matchType: matchType(match.index),
+        type: matchType(match.index),
       });
     }
   });

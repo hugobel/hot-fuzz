@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Details, Header, Row } from './table';
+import { Header, Hint, Row } from './table';
 
 const NonIdealState = () => (
   <tr className="non-ideal-results">
@@ -12,7 +12,7 @@ const NonIdealState = () => (
 
 const TransactionsTable = ({ entries, query }) => (
   <React.Fragment>
-    <Details query={query} />
+    <Hint query={query} />
     <table className="transactions">
       <thead>
         <Header />
