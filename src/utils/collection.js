@@ -29,7 +29,7 @@ export const mapProperties = items => items.map((item) => {
 
   return {
     ...remappedItem,
-    searchable: createSearchRef(remappedItem),
+    condensed: createSearchRef(remappedItem),
   };
 });
 

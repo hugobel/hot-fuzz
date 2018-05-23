@@ -31,8 +31,20 @@ Some utilities were included in order to transform the incoming data, such as:
 
 ### Ordering the transactions
 
-The transaction results will always be ordered by date (other Fuzzy Matching implementations might order by relevance), following this principle the entries are sorted as soon as they are loaded, after that every filter should display the ordered elements, it is a set and forget sort.
+The transaction results will always be ordered by date (other Fuzzy Matching implementations might order by relevance), following this feature the entries are sorted as soon as they are loaded, after that each filter should display the ordered elements, it is a set and forget sort.
 
-Additionally the transactions are remapped and a searchable string property is appended to them, this is in order to set up the data once and query an optimized string multiple times.
+Additionally the transactions are remapped and a condensed string property is appended to them, this is in order to set up the data once and query an optimized string multiple times.
+
+---
+
+### Filtering data
+
+The `fuzzySearch` service is in charge of taking a query and:
+
++ Transform it into a [RegEx](http://regex.info/blog/2006-09-15/247) pattern.
++ Test it aganst every transaction.
++ Return an array of indices and types that reference the transactions collection.
+
+The `condensed` property (a pipe-separated string) helps improving execution time of the regular expression. See: [String vs array RegEx comparison](https://jsperf.com/str-arr-match).
 
 [debouncedsearchboxgif]: https://s3.amazonaws.com/hugobeldemos/searchbox.gif "Debounced SearchBox"

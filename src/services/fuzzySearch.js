@@ -35,7 +35,7 @@ export default query => async (entries) => {
   const pattern = new RegExp(fuzzyPattern(query));
 
   entries.forEach((entry, index) => {
-    const match = entry.searchable.match(pattern);
+    const match = entry.condensed.match(pattern);
     if (match) {
       results.push({
         index,
