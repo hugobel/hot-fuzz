@@ -34,6 +34,5 @@ export const mapProperties = items => items.map((item) => {
   };
 });
 
-
 // TODO: Might consider a different sorting method
 export const sortByDate = items => sortBy(items, [item => `${item.date}${item.time}`]);

@@ -14,7 +14,6 @@ const withSubscription = Component => (
     constructor() {
       super();
       this.state = { query: '', entries: [] };
-      this.handleQuery = this.handleQuery.bind(this);
     }
 
     componentDidMount() {
@@ -29,10 +28,17 @@ const withSubscription = Component => (
       this.isCancelled = true;
     }
 
-    handleQuery(query) {
-      this.setState({ query, filteredEntries: null });
+    getEntries = () => (
+      this.state.filteredEntries
+        ? this.state.filteredEntries.map(({ index, matchType }) =>
+          ({ ...this.state.entries[index], matchType }))
+        : this.state.entries
+    );
 
-      if (query.length > 0) {
+    handleQuery = (query) => {
+      if (query.length < 1) {
+        this.setState({ query, filteredEntries: null });
+      } else {
         fuzzySearch(query)(this.state.entries)
           .then((entries) => {
             this.setState({ filteredEntries: entries });
@@ -41,7 +47,7 @@ const withSubscription = Component => (
     }
 
     render() {
-      const entries = this.state.filteredEntries || this.state.entries;
+      const entries = this.getEntries();
 
       return (
         <Component

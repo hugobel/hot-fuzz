@@ -18,7 +18,7 @@ const TransactionsTable = ({ entries, query }) => (
         <Header />
       </thead>
       <tbody>
-        {entries.length > 0 ? entries.map(Row) : <NonIdealState />}
+        {entries.length > 0 ? entries.map(el => el && Row(el)) : <NonIdealState />}
       </tbody>
     </table>
   </React.Fragment>

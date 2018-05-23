@@ -26,12 +26,17 @@ const matchType = (i) => {
 */
 export default query => async (entries) => {
   const pattern = new RegExp(fuzzyPattern(query));
-  return entries
-    .map((entry) => {
-      const match = entry.searchable.match(pattern);
-      return match
-        ? { ...entry, matchType: matchType(match.index) }
-        : null;
-    })
-    .filter(e => e);
+  const results = [];
+
+  entries.forEach((entry, index) => {
+    const match = entry.searchable.match(pattern);
+    if (match) {
+      results.push({
+        index,
+        matchType: matchType(match.index),
+      });
+    }
+  });
+
+  return results;
 };
