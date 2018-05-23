@@ -1,19 +1,4 @@
-/*
-** Does not match if anything but a number is passed
-*/
-const hasInvalidChars = query => query.match(/\D/);
-
-/*
-** Creates a RegEx pattern for testing a string
-*/
-const fuzzyPattern = str => str
-  .split('')
-  .reduce((pattern, letter, i) => (
-    i === 0
-      ? `(${letter})`
-      : `${pattern}\\d*?(${letter})`
-  ), '');
-
+import { hasInvalidChars, fuzzyPattern } from '../utils/regex';
 /*
 ** Returns the type of the matched string section
 ** based on its index position
@@ -29,7 +14,9 @@ const matchType = (i) => {
 ** Takes a query string and performs a match on the searchable property of the transactions
 */
 export default query => async (entries) => {
-  if (hasInvalidChars(query)) return [];
+  if (hasInvalidChars(query)) {
+    throw new TypeError('Invalid query, characters not accepted.');
+  }
 
   const results = [];
   const pattern = new RegExp(fuzzyPattern(query));

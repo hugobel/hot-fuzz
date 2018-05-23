@@ -4,7 +4,7 @@ import { currency, isoToHR, splitDatetime } from './format';
 /*
 ** Returns a properties pipe separated string for a search functionality
 */
-export const createSearchRef = ({
+export const createCondensed = ({
   card,
   time,
   date,
@@ -29,7 +29,7 @@ export const mapProperties = items => items.map((item) => {
 
   return {
     ...remappedItem,
-    condensed: createSearchRef(remappedItem),
+    condensed: createCondensed(remappedItem),
   };
 });
 

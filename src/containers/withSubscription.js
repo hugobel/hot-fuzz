@@ -42,6 +42,8 @@ const withSubscription = Component => (
         fuzzySearch(query)(this.state.entries)
           .then((entries) => {
             this.setState({ filteredEntries: entries });
+          }).catch((e) => {
+            console.error(e.message);
           });
       }
     }

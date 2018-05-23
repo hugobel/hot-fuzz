@@ -1,5 +1,5 @@
 /* eslint object-curly-newline: ["error", { "multiline": true }] */
-import { createSearchRef, mapProperties, sortByDate } from './collection';
+import { createCondensed, mapProperties, sortByDate } from './collection';
 
 const rawEntries = [{ amount: 112.98, date: '27-01-2018T5:34', card_last_four: '2544' }];
 
@@ -11,7 +11,7 @@ const formattedEntries = [
 ];
 
 it('returns a string of searchable entities for a given transaction', () => {
-  const result = createSearchRef(formattedEntries[2]);
+  const result = createCondensed(formattedEntries[2]);
   const consensedStr = '8999|0926|02112017|111';
 
   expect(result).toEqual(consensedStr);
