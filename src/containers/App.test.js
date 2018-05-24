@@ -1,9 +1,9 @@
+/* eslint object-curly-newline: ["error", {  "multiline": true }] */
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { mount } from 'enzyme';
 import App from '../containers/App';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+it('renders the app without crashing', () => {
+  const wrapper = mount(<App />);
+  expect(wrapper.find('.app').exists()).toEqual(true);
 });

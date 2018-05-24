@@ -40,7 +40,64 @@ it('returns the correct match type', () => {
   yearSearch.then((entries) => { expect(entries.every(e => e.type === 'date')).toBe(true); });
 });
 
+it('returns the correct number of elements', () => {
+  fuzzySearch('34')(transactions)
+    .then((entries) => {
+      expect(entries).toHaveLength(10);
+    });
+
+  fuzzySearch('99')(transactions)
+    .then((entries) => {
+      expect(entries).toHaveLength(2);
+    });
+
+  // Elements that end with 34 minutes in the time
+  fuzzySearch(':34')(transactions)
+    .then((entries) => {
+      expect(entries).toHaveLength(8);
+    });
+
+  // 2017 elements
+  fuzzySearch('//2017')(transactions)
+    .then((entries) => {
+      expect(entries).toHaveLength(4);
+    });
+
+  // February elements
+  fuzzySearch('/02/')(transactions)
+    .then((entries) => {
+      expect(entries).toHaveLength(3);
+    });
+
+  // On day 27th
+  fuzzySearch('27//')(transactions)
+    .then((entries) => {
+      expect(entries).toHaveLength(2);
+    });
+
+  // Round-number amounts
+  fuzzySearch('$.00')(transactions)
+    .then((entries) => {
+      expect(entries).toHaveLength(2);
+    });
+
+  // Mixed results
+  fuzzySearch('99')(transactions)
+    .then((entries) => {
+      expect(entries).toHaveLength(2);
+    });
+
+  // 99 cents amounts
+  fuzzySearch('.99')(transactions)
+    .then((entries) => {
+      expect(entries).toHaveLength(1);
+    });
+});
+
 it('fails when an invalid query is passed', () => {
-  const invalidSearch = fuzzySearch('a36')(transactions);
-  expect(invalidSearch).rejects.toBeInstanceOf(Error);
+  const lettersSearch = fuzzySearch('a36')(transactions);
+  expect(lettersSearch).rejects.toBeInstanceOf(Error);
+
+  const otherCharsSearch = fuzzySearch('728@')(transactions);
+  expect(otherCharsSearch).rejects.toBeInstanceOf(Error);
 });
