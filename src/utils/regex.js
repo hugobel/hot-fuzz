@@ -1,7 +1,7 @@
 /*
-** Does not match if anything but a number is passed
+** Returns a positive match if an invalid character is passed
 */
-export const hasInvalidChars = query => query.match(/\D/);
+export const hasInvalidChars = query => !!query.match(/[^\d\-:/]/);
 
 /*
 ** Creates a RegEx pattern for testing a string
