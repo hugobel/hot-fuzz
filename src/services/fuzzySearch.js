@@ -15,7 +15,7 @@ const matchType = (i) => {
 */
 export default query => async (entries) => {
   if (hasInvalidChars(query)) {
-    throw new TypeError('Invalid query, characters not accepted.');
+    throw new Error('Invalid query, characters not accepted.');
   }
 
   const results = [];

@@ -45,6 +45,7 @@ The `fuzzySearch` service is in charge of taking a query and:
 + Test it aganst every transaction.
 + Return an array of indices and types that reference the transactions collection.
 
-The `condensed` property (a pipe-separated string) helps improving execution time of the regular expression. See: [String vs array RegEx comparison](https://jsperf.com/str-arr-match).
+The `condensed` property (a pipe-separated string) helps improving execution time of the regular expression. 
+See: [String vs array RegEx comparison](https://jsperf.com/str-arr-match).
 
 [debouncedsearchboxgif]: https://s3.amazonaws.com/hugobeldemos/searchbox.gif "Debounced SearchBox"

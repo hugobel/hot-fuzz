@@ -36,5 +36,5 @@ it('returns the correct match type', () => {
 
 it('fails when an invalid query is passed', () => {
   const invalidSearch = fuzzySearch('a36')(transactions);
-  expect(invalidSearch).rejects.toBeInstanceOf(TypeError);
+  expect(invalidSearch).rejects.toBeInstanceOf(Error);
 });
