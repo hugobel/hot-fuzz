@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Header, Hint, Row } from './table';
 
@@ -11,7 +11,7 @@ const NonIdealState = () => (
 );
 
 const TransactionsTable = ({ entries, ...info }) => (
-  <React.Fragment>
+  <Fragment>
     <Hint {...info} />
     <table className="transactions">
       <thead>
@@ -23,7 +23,7 @@ const TransactionsTable = ({ entries, ...info }) => (
             : <NonIdealState /> }
       </tbody>
     </table>
-  </React.Fragment>
+  </Fragment>
 );
 
 TransactionsTable.propTypes = {

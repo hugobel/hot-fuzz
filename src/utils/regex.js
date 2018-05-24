@@ -1,15 +1,16 @@
 /*
 ** Does not match if anything but a number is passed
 */
-export const hasInvalidChars = query => query.match(/\D/);
+export const hasInvalidChars = query => !!query.match(/[^\d\-:/$. ]/);
 
 /*
 ** Creates a RegEx pattern for testing a string
 */
 export const fuzzyPattern = str => str
+  .replace(/\D/g, '')
   .split('')
-  .reduce((pattern, letter, i) => (
+  .reduce((pattern, character, i) => (
     i === 0
-      ? `(${letter})`
-      : `${pattern}\\d*?(${letter})`
+      ? `(${character})`
+      : `${pattern}\\d*?(${character})`
   ), '');

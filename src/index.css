@@ -14,10 +14,10 @@ body {
 
 b {
   font-weight: 700;
-  color: mediumseagreen;
+  color: lightseagreen;
 }
 
-#app {
+.app {
   width: 80%;
   max-width: 600px;
   min-width: 390px;
@@ -41,8 +41,20 @@ b {
   margin-bottom: 5px;
 }
 
-.transactions-details.error {
+.app.has-error .transactions-details {
   color: firebrick;
+}
+
+.transactions-details-tag {
+  background: lightseagreen;
+  margin: 0 5px;
+  padding: 1px 5px;
+  color: white;
+  border-radius: 2px;
+}
+
+.app.no-results .transactions-details-tag {
+  background: goldenrod;
 }
 
 .transactions {

@@ -1,26 +1,40 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+
+const Tag = ({ query }) => (
+  <Fragment>
+    Showing results for:
+    <span className="transactions-details-tag">
+      {query.replace(/\D/g, '')}
+    </span>
+  </Fragment>
+);
+
+Tag.propTypes = {
+  query: PropTypes.string.isRequired,
+};
 
 const Hint = ({ query, error }) => {
   const hintText = () => {
     if (error) return error;
-    if (query.length) return `Showing results for: ${query}`;
+    if (query.length) return <Tag query={query} />;
     return 'All transactions';
   };
 
   return (
-    <p className={`transactions-details ${error ? 'error' : ''}`}>
+    <p className="transactions-details">
       {hintText()}
     </p>
   );
 };
 
 Hint.propTypes = {
+  query: PropTypes.string,
   error: PropTypes.string,
-  query: PropTypes.string.isRequired,
 };
 
 Hint.defaultProps = {
+  query: '',
   error: '',
 };
 
