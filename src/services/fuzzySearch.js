@@ -4,8 +4,8 @@ import { hasInvalidChars, fuzzyPattern } from '../utils/regex';
 ** based on its index position
 */
 const matchType = (i) => {
-  if (i > 18) return 'amount';
-  if (i > 9) return 'date';
+  if (i > 21) return 'amount';
+  if (i > 10) return 'date';
   if (i > 4) return 'time';
   return 'card';
 };
