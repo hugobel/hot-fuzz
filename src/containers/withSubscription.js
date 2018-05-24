@@ -46,7 +46,7 @@ const withSubscription = Component => (
       });
     }
 
-    handleError = (err) => {
+    handleError = () => {
       this.setState({ error: 'Please only use numeric and ($ / - .) characters.' });
     }
 
