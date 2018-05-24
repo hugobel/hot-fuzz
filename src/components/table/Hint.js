@@ -5,7 +5,7 @@ const Tag = ({ query }) => (
   <Fragment>
     Showing results for:
     <span className="transactions-details-tag">
-      {query.replace(/\D/g, '')}
+      {query}
     </span>
   </Fragment>
 );

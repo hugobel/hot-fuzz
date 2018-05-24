@@ -12,7 +12,7 @@ const formattedEntries = [
 
 it('returns a string of searchable entities for a given transaction', () => {
   const result = createCondensed(formattedEntries[2]);
-  const consensedStr = '8999|0926|02112017|111';
+  const consensedStr = '8999|09:26|02/11/2017|$1.11';
 
   expect(result).toEqual(consensedStr);
 });
@@ -25,7 +25,7 @@ it('formats the incoming data entries, appending required properties', () => {
     time: '05:34',
     card: '2544',
     amount: '$112.98',
-    condensed: '2544|0534|27012018|11298',
+    condensed: '2544|05:34|27/01/2018|$112.98',
   }]);
 });
 

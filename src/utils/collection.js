@@ -10,7 +10,7 @@ export const createCondensed = ({
   date,
   amount,
 }) => (
-  `${card}|${time}|${isoToHR(date)}|${amount}`.replace(/[^\d|]/g, '')
+  `${card}|${time}|${isoToHR(date)}|${amount}`
 );
 
 /*
