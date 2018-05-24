@@ -41,6 +41,10 @@ b {
   margin-bottom: 5px;
 }
 
+.transactions-details.error {
+  color: firebrick;
+}
+
 .transactions {
   width: 100%;
   font-size: 16px;

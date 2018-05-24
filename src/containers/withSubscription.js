@@ -13,7 +13,11 @@ const withSubscription = Component => (
   class extends React.Component {
     constructor() {
       super();
-      this.state = { query: '', entries: [] };
+      this.state = {
+        query: '',
+        error: null,
+        entries: [],
+      };
     }
 
     componentDidMount() {
@@ -24,7 +28,7 @@ const withSubscription = Component => (
         });
     }
 
-    componentWillUnmount() {
+    componentWillUnmount = () => {
       this.isCancelled = true;
     }
 
@@ -33,26 +37,38 @@ const withSubscription = Component => (
         ? this.state.filteredEntries.map(({ index, type }) =>
           ({ ...this.state.entries[index], type }))
         : this.state.entries
-    );
+    )
+
+    handleSuccess = (entries) => {
+      this.setState({
+        error: null,
+        filteredEntries: entries,
+      });
+    }
+
+    handleError = (err) => {
+      this.setState({ error: err.message });
+    }
 
     handleQuery = (query) => {
-      this.setState({ query, filteredEntries: null });
+      this.setState({ query, error: null, filteredEntries: null });
 
       if (query.length > 0) {
         fuzzySearch(query)(this.state.entries)
-          .then((entries) => {
-            this.setState({ filteredEntries: entries });
-          }).catch(() => {});
+          .then(this.handleSuccess)
+          .catch(this.handleError);
       }
     }
 
     render() {
+      const { entries, ...rest } = this.state;
+
       return (
         <Component
-          query={this.state.query}
           entries={this.getEntries()}
           onQuery={this.handleQuery}
           {...this.props}
+          {...rest}
         />
       );
     }

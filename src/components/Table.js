@@ -10,15 +10,17 @@ const NonIdealState = () => (
   </tr>
 );
 
-const TransactionsTable = ({ entries, query }) => (
+const TransactionsTable = ({ entries, ...info }) => (
   <React.Fragment>
-    <Hint query={query} />
+    <Hint {...info} />
     <table className="transactions">
       <thead>
         <Header />
       </thead>
       <tbody>
-        {entries.length > 0 ? entries.map(el => el && Row(el)) : <NonIdealState />}
+        { !info.error && entries.length > 0
+            ? entries.map(el => el && Row(el))
+            : <NonIdealState /> }
       </tbody>
     </table>
   </React.Fragment>
