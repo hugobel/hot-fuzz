@@ -1,7 +1,9 @@
+export const escapeStr = str => str.replace(/([-:/$.])/g, '\\$1');
+
 /*
 ** Does not match if anything but a number is passed
 */
-export const hasInvalidChars = query => !!query.match(/[^\d\-:/$. ]/);
+export const hasInvalidChars = query => !!query.match(/[^\d\-:/$., ]/);
 
 /*
 ** Creates a RegEx pattern for testing a string

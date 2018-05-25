@@ -21,11 +21,11 @@ export default query => async (entries) => {
   const results = [];
   const pattern = new RegExp(fuzzyPattern(query));
 
-  entries.forEach((entry, index) => {
+  entries.forEach((entry) => {
     const match = entry.condensed.match(pattern);
     if (match) {
       results.push({
-        index,
+        ...entry,
         type: matchType(match.index),
       });
     }
