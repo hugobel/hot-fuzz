@@ -92,6 +92,12 @@ it('returns the correct number of elements', () => {
     .then((entries) => {
       expect(entries).toHaveLength(1);
     });
+
+  // Over thousand dlls amount
+  fuzzySearch(',')(transactions)
+    .then((entries) => {
+      expect(entries).toHaveLength(4);
+    });
 });
 
 it('fails when an invalid query is passed', () => {
