@@ -15,7 +15,7 @@ Tag.propTypes = {
 };
 
 const Hint = ({ query, error }) => {
-  const hintText = () => {
+  const text = () => {
     if (error) return error;
     if (query.length) return <Tag query={query} />;
     return 'All transactions';
@@ -23,7 +23,7 @@ const Hint = ({ query, error }) => {
 
   return (
     <p className="transactions-details">
-      {hintText()}
+      {text()}
     </p>
   );
 };
