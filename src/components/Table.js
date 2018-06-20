@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Header, Hint, Row } from './table';
+import { Header, Hint, Row } from './table/index';
 
 const NonIdealState = () => (
   <tr className="non-ideal-results">
