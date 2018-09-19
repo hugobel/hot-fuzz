@@ -4,6 +4,8 @@ This is a Fuzzy Match Algorithm exercise with a [React](https://reactjs.org/) ba
 
 The purpose of this README file is to offer a walkthrough to the evolution of the application.
 
+Demo: [Hot Fuzz](https://hugobel.github.io/hot-fuzz/)
+
 ---
 
 ### SearchBox
